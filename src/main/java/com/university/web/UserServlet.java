@@ -1,6 +1,6 @@
 package com.university.web;
 
-import com.university.service.SubjectService;
+import com.university.model.User;
 import com.university.service.UserService;
 
 import javax.servlet.RequestDispatcher;
@@ -10,19 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-public class SubjectServlet extends HttpServlet {
+public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        SubjectService subjectService = new SubjectService();
         UserService userService = new UserService();
-
-        req.setAttribute("subjects", subjectService.getSubjects());
-        req.setAttribute("user", userService.getLoggedInUser());
-        RequestDispatcher view = req.getRequestDispatcher("subjects.jsp");
+        List<User> users = userService.getUsers();
+        req.setAttribute("users", users);
+        RequestDispatcher view = req.getRequestDispatcher("users.jsp");
         view.forward(req, resp);
-
     }
 }

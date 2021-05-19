@@ -6,7 +6,6 @@
 <body>
 
 <c:choose>
-
     <c:when test = "${user.role == 'student'}">
         Welcome, student!
     </c:when>
